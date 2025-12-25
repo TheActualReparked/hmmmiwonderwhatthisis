@@ -1,0 +1,14 @@
+#chicken {
+  position: fixed;
+  width: 80px;
+  bottom: 30px;
+  right: 30px;
+  cursor: grab;
+  user-select: none;
+  z-index: 999;
+  transition: transform 0.15s ease;
+}
+
+#chicken:hover {
+  transform: scale(1.08) rotate(-5deg);
+}
