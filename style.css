@@ -1,43 +1,86 @@
-#chicken {
-  position: fixed;
-  width: 80px;
-  bottom: 30px;
-  right: 30px;
-  cursor: grab;
-  user-select: none;
-  z-index: 999;
-  transition: transform 0.15s ease;
+:root {
+  --bg1: #0b1320;
+  --bg2: #12263a;
+  --accent: #ffb3c1;
+  --glass: rgba(255, 255, 255, 0.12);
 }
 
-#chicken:hover {
-  transform: scale(1.08) rotate(-5deg);
+* { box-sizing: border-box; }
+body, html { margin:0; padding:0; height:100%; font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; overflow:hidden; }
+
+/* Landing screen */
+#landing {
+  position: fixed; width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  display:flex; justify-content:center; align-items:center;
+  color:#fff; font-family:'Playfair Display', serif; font-size:2.2rem;
+  text-align:center; cursor:pointer; z-index:9999; transition: opacity 0.8s ease;
+}
+#landing.hidden { opacity:0; pointer-events:none; }
+
+/* Main content */
+#mainContent {
+  display:none; min-height:100vh;
+  justify-content:center; align-items:center;
+  background: radial-gradient(1200px 600px at 10% 10%, #1b2b44 0%, transparent 60%),
+              radial-gradient(1000px 500px at 90% 20%, #203a5a 0%, transparent 55%),
+              linear-gradient(135deg, var(--bg1), var(--bg2));
+  color:#fff; overflow:hidden; padding:20px;
 }
 
 .card-container {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start; /* keeps top aligned */
+  display:flex; gap:24px; flex-wrap:wrap; justify-content:center; align-items:flex-start;
 }
 
 .card {
-  width: 420px; /* fixed width */
-  min-height: 480px; /* fixed height so it doesn't shrink */
-  padding: 44px 36px 40px;
+  width:480px; /* increased from 420px */
+  min-height:480px;
+  padding:44px 36px 40px;
+  background: var(--glass); backdrop-filter: blur(14px); border-radius:24px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.45); position:relative; animation: fadeIn 1.4s ease;
 }
 
-#photo {
-  width: 300px;
-  height: 480px; /* same height as card */
-  border-radius: 24px;
-  object-fit: cover; /* crop to fill container */
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+.badge {
+  position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+  background: rgba(0,0,0,0.35); padding:6px 14px; border-radius:999px;
+  font-size:0.8rem; letter-spacing:0.04em; border:1px solid rgba(255,255,255,0.2);
 }
 
-@media (max-width: 480px) {
-  .card { width: 90%; min-height: 400px; }
-  #photo { width: 90%; height: 400px; margin-top: 20px; }
+h1 { font-family:'Playfair Display', serif; text-align:center; font-size:2rem; margin:10px 0 24px; }
+.divider { width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--accent),transparent); margin:0 auto 26px; opacity:0.8; }
+p { line-height:1.6; font-size:1rem; margin-bottom:18px; color:rgba(255,255,255,0.95); }
+.heart { text-align:center; font-size:1.8rem; margin:22px 0 8px; animation:pulse 1.6s infinite; color:var(--accent); }
+.signature { margin-top:28px; text-align:right; font-style:italic; font-family:'Playfair Display', serif; }
+
+#chicken {
+  position:fixed; width:80px; bottom:30px; right:30px; cursor:grab; user-select:none; z-index:999;
+  transition: transform 0.15s ease; filter: drop-shadow(0 8px 14px rgba(0,0,0,0.25));
+}
+#chicken:hover { transform: scale(1.08) rotate(-5deg); }
+#chicken:active { cursor:grabbing; transform: scale(1.1); }
+
+.photo-container {
+  width:320px; /* slightly wider if needed */
+  height:480px; /* same height as card */
+  overflow:hidden; 
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+  border-radius:0; /* remove round corners */
+}
+.photo-container img {
+  width:100%;
+  height:100%;
+  object-fit:cover; /* fill container, crop if needed */
+  border-radius:0; /* remove rounding on image */
 }
 
+@keyframes fadeIn { from{opacity:0; transform:translateY(26px);} to{opacity:1; transform:translateY(0);} }
+@keyframes pulse { 0%{transform:scale(1);} 50%{transform:scale(1.18);} 100%{transform:scale(1);} }
+
+@media (max-width:480px) {
+  .card { width:90%; min-height:400px; }
+  .photo-container { width:90%; height:400px; margin-top:20px; }
+  h1 { font-size:1.5rem; } 
+  p{ font-size:0.9rem; } 
+  .heart{ font-size:1.4rem; } 
+  #chicken { width:40px; bottom:16px; right:16px; }
+}
