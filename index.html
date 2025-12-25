@@ -124,24 +124,50 @@
       50% { transform: scale(1.18); }
       100% { transform: scale(1); }
     }
-  #chicken {
-  position: fixed;
-  width: 64px; /* smaller chicken lol */
-  bottom: 24px;
-  right: 24px;
-  cursor: grab;
-  user-select: none;
-  z-index: 9999;
-  filter: drop-shadow(0 8px 14px rgba(0,0,0,0.25));
-  transition: transform 0.15s ease;
-}
 
-#chicken:active {
-  cursor: grabbing;
-  transform: scale(1.1);
-}
+    #chicken {
+      position: fixed;
+      width: 64px; /* default size */
+      bottom: 24px;
+      right: 24px;
+      cursor: grab;
+      user-select: none;
+      z-index: 9999;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.25));
+      transition: transform 0.15s ease;
+    }
 
-</style>
+    #chicken:active {
+      cursor: grabbing;
+      transform: scale(1.1);
+    }
+
+    /* mobile adjustments */
+    @media (max-width: 480px) {
+      #chicken {
+        width: 40px;
+        bottom: 16px;
+        right: 16px;
+      }
+
+      .card {
+        padding: 28px 20px 24px;
+        max-width: 90%;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      .heart {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- floating ornaments -->
@@ -162,8 +188,10 @@
       HALLO BABYYY, HAPPPYY CHRISTMASSS MY LOVEEEE I'm so happy we made it to christmas together
       AND WE GET TO CELERBATE IT TOGETHERR AS WELLL HUEHEHEH.
     </p>
+    <p>
       I'm so grateful for this whole year of you coming into my life and making me the way i am noww,
       My love for you is unexplainable in words babyy i wish you and your family happiness and fortunee this year and next year!!
+    </p>
     <p>
       I REALLY HOPE YOU ENJOY THE PRESENTS I GAVEE YOUUU!! MY MOM BOUGHT YOU THE CHOCOLATES HEUEHEH
     </p>
@@ -184,52 +212,6 @@
   <!-- draggable chicken -->
   <img src="chicken.png" alt="chicken" id="chicken" />
 
-  <script>
-    const chicken = document.getElementById('chicken');
-
-    let offsetX = 0;
-    let offsetY = 0;
-    let isDragging = false;
-
-    chicken.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      offsetX = e.clientX - chicken.getBoundingClientRect().left;
-      offsetY = e.clientY - chicken.getBoundingClientRect().top;
-      chicken.style.cursor = 'grabbing';
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      chicken.style.left = e.clientX - offsetX + 'px';
-      chicken.style.top = e.clientY - offsetY + 'px';
-    });
-
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      chicken.style.cursor = 'grab';
-    });
-
-    // mobile support
-    chicken.addEventListener('touchstart', (e) => {
-      const touch = e.touches[0];
-      const rect = chicken.getBoundingClientRect();
-      offsetX = touch.clientX - rect.left;
-      offsetY = touch.clientY - rect.top;
-      isDragging = true;
-    });
-
-    document.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      const touch = e.touches[0];
-      chicken.style.left = touch.clientX - offsetX + 'px';
-      chicken.style.top = touch.clientY - offsetY + 'px';
-    });
-
-    document.addEventListener('touchend', () => {
-      isDragging = false;
-    });
-  </script>
-  
   <!-- background music (click to start) -->
   <audio id="bgm" loop>
     <source src="music.mp3" type="audio/mpeg" />
@@ -247,48 +229,47 @@
     function startMusic() {
       if (!musicStarted) {
         bgm.volume = 0.25;
-        bgm.play().catch(() => {});
+        bgm.play().catch(() => console.log('Music blocked, needs interaction.'));
         musicStarted = true;
       }
     }
 
-    chicken.addEventListener('mousedown', (e) => {
+    function dragStart(e) {
       startMusic();
       isDragging = true;
-      offsetX = e.clientX - chicken.getBoundingClientRect().left;
-      offsetY = e.clientY - chicken.getBoundingClientRect().top;
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      chicken.style.left = e.clientX - offsetX + 'px';
-      chicken.style.top = e.clientY - offsetY + 'px';
-    });
-
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    // mobile support
-    chicken.addEventListener('touchstart', (e) => {
-      startMusic();
-      const touch = e.touches[0];
       const rect = chicken.getBoundingClientRect();
-      offsetX = touch.clientX - rect.left;
-      offsetY = touch.clientY - rect.top;
-      isDragging = true;
-    });
+      if (e.touches) {
+        const touch = e.touches[0];
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+      } else {
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+      }
+    }
 
-    document.addEventListener('touchmove', (e) => {
+    function dragMove(e) {
       if (!isDragging) return;
-      const touch = e.touches[0];
-      chicken.style.left = touch.clientX - offsetX + 'px';
-      chicken.style.top = touch.clientY - offsetY + 'px';
-    });
+      let clientX = e.clientX;
+      let clientY = e.clientY;
+      if (e.touches) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      }
+      chicken.style.left = clientX - offsetX + 'px';
+      chicken.style.top = clientY - offsetY + 'px';
+    }
 
-    document.addEventListener('touchend', () => {
+    function dragEnd() {
       isDragging = false;
-    });
+    }
+
+    chicken.addEventListener('mousedown', dragStart);
+    chicken.addEventListener('touchstart', dragStart);
+    document.addEventListener('mousemove', dragMove);
+    document.addEventListener('touchmove', dragMove);
+    document.addEventListener('mouseup', dragEnd);
+    document.addEventListener('touchend', dragEnd);
   </script>
 </body>
 </html>
