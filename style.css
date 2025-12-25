@@ -12,3 +12,26 @@
 #chicken:hover {
   transform: scale(1.08) rotate(-5deg);
 }
+
+.card-container {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; /* keeps top aligned */
+}
+
+.card {
+  width: 420px; /* fixed width */
+  min-height: 480px; /* fixed height so it doesn't shrink */
+  padding: 44px 36px 40px;
+}
+
+#photo {
+  width: 300px;
+  height: 480px; /* same height as card */
+  border-radius: 24px;
+  object-fit: cover; /* crop to fill container */
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
