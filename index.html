@@ -1,281 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HAPPYY CHRISTMASS MISS CHICKENN 🐤❤️</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg1: #0b1320;
-      --bg2: #12263a;
-      --accent: #ffb3c1;
-      --glass: rgba(255, 255, 255, 0.12);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HAPPYY CHRISTMASS MISS CHICKENN 🐤❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg1: #0b1320;
+  --bg2: #12263a;
+  --accent: #ffb3c1;
+  --glass: rgba(255, 255, 255, 0.12);
+}
 
-    * { box-sizing: border-box; }
+* { box-sizing: border-box; }
+body, html { margin:0; padding:0; height:100%; font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; overflow:hidden; }
 
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow: hidden;
-    }
+/* Landing screen */
+#landing {
+  position: fixed; width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  display:flex; justify-content:center; align-items:center;
+  color:#fff; font-family:'Playfair Display', serif; font-size:2.2rem;
+  text-align:center; cursor:pointer; z-index:9999; transition: opacity 0.8s ease;
+}
+#landing.hidden { opacity:0; pointer-events:none; }
 
-    /* Landing screen */
-    #landing {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, var(--bg1), var(--bg2));
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      text-align: center;
-      cursor: pointer;
-      z-index: 9999;
-      transition: opacity 0.8s ease;
-    }
+/* Main content */
+#mainContent {
+  display:none; min-height:100vh;
+  justify-content:center; align-items:center;
+  background: radial-gradient(1200px 600px at 10% 10%, #1b2b44 0%, transparent 60%),
+              radial-gradient(1000px 500px at 90% 20%, #203a5a 0%, transparent 55%),
+              linear-gradient(135deg, var(--bg1), var(--bg2));
+  color:#fff; overflow:hidden; padding:20px;
+}
 
-    #landing.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
+.card-container {
+  display:flex; gap:24px; flex-wrap:wrap; justify-content:center; align-items:flex-start;
+}
 
-    /* main content wrapper */
-    #mainContent {
-      display: none;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(1200px 600px at 10% 10%, #1b2b44 0%, transparent 60%),
-                  radial-gradient(1000px 500px at 90% 20%, #203a5a 0%, transparent 55%),
-                  linear-gradient(135deg, var(--bg1), var(--bg2));
-      color: #fff;
-      overflow: hidden;
-      padding: 20px;
-    }
+.card {
+  width:420px; min-height:480px; padding:44px 36px 40px;
+  background: var(--glass); backdrop-filter: blur(14px); border-radius:24px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.45); position:relative; animation: fadeIn 1.4s ease;
+}
 
-    .card-container {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-    }
+.badge {
+  position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+  background: rgba(0,0,0,0.35); padding:6px 14px; border-radius:999px;
+  font-size:0.8rem; letter-spacing:0.04em; border:1px solid rgba(255,255,255,0.2);
+}
 
-    .card {
-      position: relative;
-      background: var(--glass);
-      backdrop-filter: blur(14px);
-      border-radius: 24px;
-      padding: 44px 36px 40px;
-      max-width: 420px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
-      animation: fadeIn 1.4s ease;
-    }
+h1 { font-family:'Playfair Display', serif; text-align:center; font-size:2rem; margin:10px 0 24px; }
+.divider { width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--accent),transparent); margin:0 auto 26px; opacity:0.8; }
+p { line-height:1.6; font-size:1rem; margin-bottom:18px; color:rgba(255,255,255,0.95); }
+.heart { text-align:center; font-size:1.8rem; margin:22px 0 8px; animation:pulse 1.6s infinite; color:var(--accent); }
+.signature { margin-top:28px; text-align:right; font-style:italic; font-family:'Playfair Display', serif; }
 
-    /* placeholder photo */
-    #photo {
-      width: 300px;
-      height: 300px;
-      border-radius: 24px;
-      object-fit: cover;
-      background: rgba(255,255,255,0.1);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
+#chicken {
+  position:fixed; width:80px; bottom:30px; right:30px; cursor:grab; user-select:none; z-index:999;
+  transition: transform 0.15s ease; filter: drop-shadow(0 8px 14px rgba(0,0,0,0.25));
+}
+#chicken:hover { transform: scale(1.08) rotate(-5deg); }
+#chicken:active { cursor:grabbing; transform: scale(1.1); }
 
-    .badge {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.35);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      letter-spacing: 0.04em;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
+.photo-container {
+  width:300px; height:480px; border-radius:24px; overflow:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,0.4); animation: fadeIn 1.4s ease;
+}
+.photo-container img { width:100%; height:100%; object-fit:cover; }
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      text-align: center;
-      font-size: 2rem;
-      margin: 10px 0 24px;
-    }
+@keyframes fadeIn { from{opacity:0; transform:translateY(26px);} to{opacity:1; transform:translateY(0);} }
+@keyframes pulse { 0%{transform:scale(1);} 50%{transform:scale(1.18);} 100%{transform:scale(1);} }
 
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      margin: 0 auto 26px;
-      opacity: 0.8;
-    }
-
-    p {
-      line-height: 1.6;
-      font-size: 1rem;
-      margin-bottom: 18px;
-      color: rgba(255,255,255,0.95);
-    }
-
-    .heart {
-      text-align: center;
-      font-size: 1.8rem;
-      margin: 22px 0 8px;
-      animation: pulse 1.6s infinite;
-      color: var(--accent);
-    }
-
-    .signature {
-      margin-top: 28px;
-      text-align: right;
-      font-style: italic;
-      font-family: 'Playfair Display', serif;
-    }
-
-    #chicken {
-      position: fixed;
-      width: 64px;
-      bottom: 24px;
-      right: 24px;
-      cursor: grab;
-      user-select: none;
-      z-index: 9999;
-      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.25));
-      transition: transform 0.15s ease;
-    }
-
-    #chicken:active { transform: scale(1.1); cursor: grabbing; }
-
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.18); } 100% { transform: scale(1); } }
-
-    /* mobile adjustments */
-    @media (max-width: 480px) {
-      #chicken { width: 40px; bottom: 16px; right: 16px; }
-      .card { padding: 28px 20px 24px; max-width: 90%; }
-      h1 { font-size: 1.5rem; }
-      p { font-size: 0.9rem; }
-      .heart { font-size: 1.4rem; }
-      #photo { width: 200px; height: 200px; }
-    }
-  </style>
+@media (max-width:480px) {
+  .card { width:90%; min-height:400px; }
+  .photo-container { width:90%; height:400px; margin-top:20px; }
+  h1 { font-size:1.5rem; } p{ font-size:0.9rem; } .heart{ font-size:1.4rem; } 
+  #chicken { width:40px; bottom:16px; right:16px; }
+}
+</style>
 </head>
 <body>
 
-  <!-- landing screen -->
-  <div id="landing">hmmmm click to enterr</div>
+<!-- Landing -->
+<div id="landing">🎄 Click to Enter 🎄</div>
 
-  <!-- main content -->
-  <div id="mainContent">
-    <div class="card-container">
-      <div class="card">
-        <div class="badge">just for miss chicken 🐥</div>
-
-        <h1>Happy Christmas Lindaaa!!! ❤️</h1>
-        <div class="divider"></div>
-
-        <p>
-          HALLO BABYYY, HAPPPYY CHRISTMASSS MY LOVEEEE I'm so happy we made it to christmas together
-          AND WE GET TO CELERBATE IT TOGETHERR AS WELLL HUEHEHEH.
-        </p>
-        <p>
-          I'm so grateful for this whole year of you coming into my life and making me the way i am noww,
-          My love for you is unexplainable in words babyy i wish you and your family happiness and fortunee this year and next year!!
-          I pray for our relationship to be safe and last long 🙏🙏
-        </p>
-        <p>
-          I REALLY HOPE YOU ENJOY THE PRESENTS I GAVEE YOUUU!! EAT DA CHOCOLATE BEFORE ITT MELTSS HEHEUHEH
-        </p>
-        <p>
-          im really happy i get to celebrate christmas with youu my lovee 🐤
-        </p>
-
-        <div class="heart">❤️</div>
-
-        <div class="signature">
-          Yours always,<br />
-          Mr chicken, (Sea)
-        </div>
-      </div>
-
-      <!-- placeholder for photobooth picture -->
-      <img id="photo" src="photo.png" alt="Photo of us" />
+<!-- Main -->
+<div id="mainContent">
+  <div class="card-container">
+    <div class="card">
+      <div class="badge">just for miss chicken 🐥</div>
+      <h1>Happy Christmas Lindaaa!!! ❤️</h1>
+      <div class="divider"></div>
+      <p>HALLO BABYYY, HAPPPYY CHRISTMASSS MY LOVEEEE I'm so happy we made it to christmas together AND WE GET TO CELERBATE IT TOGETHERR AS WELLL HUEHEHEH.</p>
+      <p>I'm so grateful for this whole year of you coming into my life and making me the way i am noww, My love for you is unexplainable in words babyy i wish you and your family happiness and fortunee this year and next year!!</p>
+      <p>I REALLY HOPE YOU ENJOY THE PRESENTS I GAVEE YOUUU!! MY MOM BOUGHT YOU THE CHOCOLATES HEUEHEH</p>
+      <p>im really happy i get to celebrate christmas with youu my lovee 🐤</p>
+      <div class="heart">❤️</div>
+      <div class="signature">Yours always,<br/>Mr chicken, (Sea)</div>
     </div>
 
-    <!-- draggable chicken -->
-    <img src="chicken.png" alt="chicken" id="chicken" />
-
-    <!-- background music -->
-    <audio id="bgm" loop>
-      <source src="music.mp3" type="audio/mpeg" />
-    </audio>
+    <!-- Photo -->
+    <div class="photo-container">
+      <img id="photo" src="photo.png" alt="Photo of us" />
+    </div>
   </div>
 
-  <script>
-    // landing screen click
-    const landing = document.getElementById('landing');
-    const main = document.getElementById('mainContent');
-    landing.addEventListener('click', () => {
-      landing.classList.add('hidden');
-      setTimeout(() => { main.style.display = 'flex'; }, 800);
-    });
+  <!-- Draggable chicken -->
+  <img src="chicken.png" alt="chicken" id="chicken" />
 
-    // chicken drag + music
-    const chicken = document.getElementById('chicken');
-    const bgm = document.getElementById('bgm');
-    let offsetX = 0, offsetY = 0, isDragging = false, musicStarted = false;
+  <!-- Background music -->
+  <audio id="bgm" loop>
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+</div>
 
-    function startMusic() {
-      if (!musicStarted) {
-        bgm.volume = 0.25;
-        bgm.play().catch(() => console.log('Music blocked.'));
-        musicStarted = true;
-      }
-    }
+<script>
+  // Landing click
+  const landing = document.getElementById('landing');
+  const main = document.getElementById('mainContent');
+  landing.addEventListener('click', () => {
+    landing.classList.add('hidden');
+    setTimeout(()=>{ main.style.display='flex'; },800);
+  });
 
-    function dragStart(e) {
-      startMusic();
-      isDragging = true;
-      const rect = chicken.getBoundingClientRect();
-      if (e.touches) {
-        const touch = e.touches[0];
-        offsetX = touch.clientX - rect.left;
-        offsetY = touch.clientY - rect.top;
-      } else {
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-      }
-    }
+  // Chicken drag + music
+  const chicken = document.getElementById('chicken');
+  const bgm = document.getElementById('bgm');
+  let offsetX=0, offsetY=0, isDragging=false, musicStarted=false;
 
-    function dragMove(e) {
-      if (!isDragging) return;
-      let clientX = e.clientX;
-      let clientY = e.clientY;
-      if (e.touches) {
-        clientX = e.touches[0].clientX;
-        clientY = e.touches[0].clientY;
-      }
-      chicken.style.left = clientX - offsetX + 'px';
-      chicken.style.top = clientY - offsetY + 'px';
-    }
+  function startMusic(){
+    if(!musicStarted){ bgm.volume=0.25; bgm.play().catch(()=>{}); musicStarted=true; }
+  }
 
-    function dragEnd() { isDragging = false; }
+  function dragStart(e){
+    startMusic();
+    isDragging=true;
+    const rect=chicken.getBoundingClientRect();
+    if(e.touches){ const t=e.touches[0]; offsetX=t.clientX-rect.left; offsetY=t.clientY-rect.top; }
+    else{ offsetX=e.clientX-rect.left; offsetY=e.clientY-rect.top; }
+  }
 
-    chicken.addEventListener('mousedown', dragStart);
-    chicken.addEventListener('touchstart', dragStart);
-    document.addEventListener('mousemove', dragMove);
-    document.addEventListener('touchmove', dragMove);
-    document.addEventListener('mouseup', dragEnd);
-    document.addEventListener('touchend', dragEnd);
-  </script>
+  function dragMove(e){
+    if(!isDragging) return;
+    let clientX=e.clientX, clientY=e.clientY;
+    if(e.touches){ clientX=e.touches[0].clientX; clientY=e.touches[0].clientY; }
+    chicken.style.left=clientX-offsetX+'px';
+    chicken.style.top=clientY-offsetY+'px';
+  }
+
+  function dragEnd(){ isDragging=false; }
+
+  chicken.addEventListener('mousedown', dragStart);
+  chicken.addEventListener('touchstart', dragStart);
+  document.addEventListener('mousemove', dragMove);
+  document.addEventListener('touchmove', dragMove);
+  document.addEventListener('mouseup', dragEnd);
+  document.addEventListener('touchend', dragEnd);
+</script>
 
 </body>
 </html>
