@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>happy chirstmas miss chickenn!! 🐔❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #0b1320;
+      --bg2: #12263a;
+      --accent: #ffb3c1;
+      --glass: rgba(255, 255, 255, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(1200px 600px at 10% 10%, #1b2b44 0%, transparent 60%),
+                  radial-gradient(1000px 500px at 90% 20%, #203a5a 0%, transparent 55%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* Floating ornaments */
+    .ornament {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      animation: float 12s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes float {
+      from { transform: translateY(110vh); }
+      to { transform: translateY(-10vh); }
+    }
+
+    .card {
+      position: relative;
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      border-radius: 24px;
+      padding: 44px 36px 40px;
+      max-width: 620px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+      animation: fadeIn 1.4s ease;
+    }
+
+    .badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      font-size: 2.6rem;
+      margin: 10px 0 24px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 0 auto 26px;
+      opacity: 0.8;
+    }
+
+    p {
+      line-height: 1.85;
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .heart {
+      text-align: center;
+      font-size: 2.2rem;
+      margin: 22px 0 8px;
+      animation: pulse 1.6s infinite;
+      color: var(--accent);
+    }
+
+    .signature {
+      margin-top: 28px;
+      text-align: right;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .chicken {
+      position: absolute;
+      bottom: 14px;
+      left: 18px;
+      font-size: 1.1rem;
+      opacity: 0.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(26px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- floating ornaments -->
+  <div class="ornament" style="left:10%; animation-delay:0s;"></div>
+  <div class="ornament" style="left:25%; animation-delay:2s;"></div>
+  <div class="ornament" style="left:40%; animation-delay:4s;"></div>
+  <div class="ornament" style="left:55%; animation-delay:1s;"></div>
+  <div class="ornament" style="left:70%; animation-delay:3s;"></div>
+  <div class="ornament" style="left:85%; animation-delay:5s;"></div>
+
+  <div class="card">
+    <div class="badge">just for miss chicken 🐔</div>
+
+    <h1>Happy Chicken Christmas ❤️</h1>
+    <div class="divider"></div>
+
+    <p>
+      .
+      .
+    </p>
+
+    <p>
+      .
+      .
+      .
+    </p>
+
+    <p>
+      .
+      .
+    </p>
+
+    <div class="heart">❤️</div>
+
+    <div class="signature">
+      from yours,<br />
+      seaseaa
+    </div>
+
+    <div class="chicken">🐔</div>
+  </div>
+  
+  <!-- draggable chicken -->
+  <img src="https://m.media-amazon.com/images/I/51W8nm1IsHL._AC_UF1000,1000_QL80_.jpg" alt="chicken" id="chicken" />
+
+  <script>
+    const chicken = document.getElementById('chicken');
+
+    let offsetX = 0;
+    let offsetY = 0;
+    let isDragging = false;
+
+    chicken.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - chicken.getBoundingClientRect().left;
+      offsetY = e.clientY - chicken.getBoundingClientRect().top;
+      chicken.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      chicken.style.left = e.clientX - offsetX + 'px';
+      chicken.style.top = e.clientY - offsetY + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      chicken.style.cursor = 'grab';
+    });
+
+    // mobile support
+    chicken.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      const rect = chicken.getBoundingClientRect();
+      offsetX = touch.clientX - rect.left;
+      offsetY = touch.clientY - rect.top;
+      isDragging = true;
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const touch = e.touches[0];
+      chicken.style.left = touch.clientX - offsetX + 'px';
+      chicken.style.top = touch.clientY - offsetY + 'px';
+    });
+
+    document.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+  </script>
+</body>
+</html>
